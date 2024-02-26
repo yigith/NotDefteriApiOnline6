@@ -68,4 +68,20 @@ btnSil.onclick = (e) => {
     });
 };
 
+frmNot.onsubmit = (e) => {
+    e.preventDefault();
+    let not = {
+        id: seciliNot.id,
+        baslik: txtBaslik.value,
+        icerik: txtIcerik.value
+    };
+
+    axios.put(apiUrl + "/" + not.id, not).then(res => {
+        seciliNot.baslik = not.baslik;
+        seciliNot.icerik = not.icerik;
+        notlariListele();
+        notuGoster(seciliNot);
+    }).catch(error => console.log(error));
+};
+
 notlariGetir();

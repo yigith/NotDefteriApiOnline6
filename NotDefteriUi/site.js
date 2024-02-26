@@ -57,4 +57,15 @@ btnYeni.onclick = (e) => {
     });
 };
 
+btnSil.onclick = (e) => {
+    axios.delete(apiUrl + "/" + seciliNot.id).then(res => {
+        let sid = notlar.indexOf(seciliNot);
+        notlar.splice(sid, 1);
+        notlariListele();
+        frmNot.style.display = "none";
+        if (notlar.length)
+            notuGoster(notlar[Math.min(sid, notlar.length - 1)]);
+    });
+};
+
 notlariGetir();
